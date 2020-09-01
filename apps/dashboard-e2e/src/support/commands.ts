@@ -11,12 +11,25 @@
 declare namespace Cypress {
   interface Chainable<Subject> {
     login(email: string, password: string): void;
+    removeChars(n: number): void;
   }
 }
 //
 // -- This is a parent command --
 Cypress.Commands.add('login', (email, password) => {
   console.log('Custom command example: Login', email, password);
+});
+
+Cypress.Commands.add('removeChars', { prevSubject: true }, (subject, n) => {
+  let backspace = '';
+
+  for (let i = 0; i < n; i++) {
+    backspace += '{backspace}';
+  }
+
+  cy.wrap(subject).type(`${backspace}`);
+
+  console.log('Custom Command, deletes n characters');
 });
 //
 // -- This is a child command --

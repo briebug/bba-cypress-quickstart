@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-title>
+    Users
+  </mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let user of users" class="mat-list-option" (click)="selected.emit(user)" data-cy="list-item">
+        <span matLine data-cy="item-title">{{user.title}}</span>
+        <button *ngIf="!readonly" mat-icon-button type="button" color="warn" (click)="deleted.emit(user); $event.stopImmediatePropagation()">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

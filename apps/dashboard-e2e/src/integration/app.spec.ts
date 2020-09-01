@@ -1,13 +1,41 @@
-import { getGreeting } from '../support/app.po';
+import { getNavItem, checkLocation } from '../support/app.po';
 
 describe('dashboard', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  describe('should display app components', () => {
+    it('should have toolbar', () => {
+      cy.get('[data-cy=toolbar]').contains('Reactive Application');
+    });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to dashboard!');
+    it('should have bba-home', () => {
+      cy.get('[data-cy=home-card]').should('have.length.greaterThan', 0);
+    });
+
+    it('should have menu 4 items', () => {
+      cy.get('[data-cy=nav-link]').should('have.length', 4);
+    });
+
+    describe('should navigate to', () => {
+      it('Home', () => {
+        getNavItem(0).click();
+        checkLocation('/');
+      });
+
+      it('Courses', () => {
+        getNavItem(1).click();
+        checkLocation('/courses');
+      });
+
+      it('Lessons', () => {
+        getNavItem(2).click();
+        checkLocation('/lessons');
+      });
+
+      it('Users', () => {
+        getNavItem(3).click();
+        checkLocation('/users');
+      });
+    });
   });
 });

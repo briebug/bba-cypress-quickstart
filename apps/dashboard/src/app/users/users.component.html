@@ -1,0 +1,14 @@
+<div class="component-container">
+  <div class="list-component">
+    <bba-users-list [users]="users$ | async"
+      (selected)="selectUser($event)"
+      (deleted)="deleteUser($event)">
+    </bba-users-list>
+  </div>
+  <div class="details-component">
+    <bba-user-details [user]="selectedUser$ | async"
+      (saved)="saveUser($event)"
+      (cancelled)="reset()">
+    </bba-user-details>
+  </div>
+</div>

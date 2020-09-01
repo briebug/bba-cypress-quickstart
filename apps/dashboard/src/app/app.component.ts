@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@bba/api-interfaces';
+import { Observable, of } from 'rxjs';
+
+export enum SidenavStatus {
+  OPENED = 'opened',
+  DISABLED = 'disabled',
+  CLOSED = 'closed',
+}
 
 @Component({
   selector: 'bba-root',
@@ -8,6 +13,25 @@ import { Message } from '@bba/api-interfaces';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  title = 'Reactive Application';
+  links = [
+    { path: '/home', icon: 'home', title: 'Home' },
+    { path: '/courses', icon: 'view_list', title: 'Courses' },
+    { path: '/lessons', icon: 'assignment', title: 'Lessons' },
+    { path: '/users', icon: 'account_circle', title: 'Users' },
+  ];
+
+  isAuthenticated$: Observable<boolean> = of(true);
+  sidenavStatus = SidenavStatus.OPENED;
+
+  constructor() {}
+
+  logout() {}
+
+  toggleSidenav() {
+    this.sidenavStatus =
+      this.sidenavStatus === SidenavStatus.OPENED
+        ? SidenavStatus.CLOSED
+        : SidenavStatus.OPENED;
+  }
 }

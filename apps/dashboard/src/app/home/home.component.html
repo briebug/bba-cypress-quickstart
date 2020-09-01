@@ -1,0 +1,11 @@
+<div class="home-container">
+  <mat-card *ngFor="let course of courseLesons$ | async" data-cy="home-card">
+    <mat-card-header>
+      <mat-card-title>{{course.title}}</mat-card-title>
+      <mat-card-subtitle>{{course.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <bba-lessons-list [lessons]="course.lessons" [readonly]="true"></bba-lessons-list>
+    </mat-card-content>
+  </mat-card>
+</div>
