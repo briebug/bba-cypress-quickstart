@@ -24,6 +24,3 @@ export const getSideNav = () => cy.get('[data-cy=side-nav]');
 export const getNavList = () => cy.get('[data-cy=nav-list]>mat-list-item');
 
 export const getNavItem = (item) => cy.get(`[data-cy=nav-item-${item}]`);
-
-export const checkLocation = (route) =>
-  cy.location().should((loc) => expect(loc.pathname).to.eq(route));

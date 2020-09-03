@@ -11,34 +11,22 @@
 declare namespace Cypress {
   interface Chainable<Subject> {
     login(email: string, password: string): void;
-    removeChars(n: number): void;
+    loadData(): void;
+    checkLocation(path: string): void;
   }
 }
-//
-// -- This is a parent command --
+
+Cypress.Commands.add('loadData', () => {
+  cy.server();
+  cy.route('GET', 'http://localhost:3000/courses', 'fixture:courses');
+  cy.route('GET', 'http://localhost:3000/lessons', 'fixture:lessons');
+  cy.route('GET', 'http://localhost:3000/users', 'fixture:users');
+});
+
+Cypress.Commands.add('checkLocation', (route) => {
+  cy.location().should((loc) => expect(loc.pathname).to.eq(route));
+});
+
 Cypress.Commands.add('login', (email, password) => {
   console.log('Custom command example: Login', email, password);
 });
-
-Cypress.Commands.add('removeChars', { prevSubject: true }, (subject, n) => {
-  let backspace = '';
-
-  for (let i = 0; i < n; i++) {
-    backspace += '{backspace}';
-  }
-
-  cy.wrap(subject).type(`${backspace}`);
-
-  console.log('Custom Command, deletes n characters');
-});
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })

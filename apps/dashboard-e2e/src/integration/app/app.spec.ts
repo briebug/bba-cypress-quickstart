@@ -1,5 +1,4 @@
 import {
-  checkLocation,
   getLoginBtn,
   getNavItem,
   getNavList,
@@ -11,13 +10,7 @@ import {
 
 describe('Dashboard', () => {
   beforeEach(() => {
-    cy.server();
-    cy.route('GET', 'http://localhost:3000/courses', 'fixture:courses');
-    cy.route('GET', 'http://localhost:3000/lessons', 'fixture:lessons');
-    cy.route('GET', 'http://localhost:3000/users', 'fixture:users');
-  });
-
-  beforeEach(() => {
+    cy.loadData();
     cy.visit('/');
   });
 
@@ -34,14 +27,13 @@ describe('Dashboard', () => {
       getSideNav().should('be.visible');
     });
 
-
     it('should display the login button', () => {
       getLoginBtn().should('exist');
     });
 
     it('should navigate to the login page on login button click', () => {
       getLoginBtn().click();
-      checkLocation(state.loginRoute);
+      cy.checkLocation(state.loginRoute);
     });
 
     it('should display the correct title', () => {
@@ -61,7 +53,7 @@ describe('Dashboard', () => {
     it('should properly navigate on click', () => {
       state.links.forEach((link) => {
         getNavItem(link.title).click();
-        checkLocation(link.path);
+        cy.checkLocation(link.path);
       });
     });
   });
