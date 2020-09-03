@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@bba/core-data';
 import { Observable, of } from 'rxjs';
 
 export enum SidenavStatus {
@@ -22,13 +23,13 @@ export class AppComponent {
     { path: '/users', icon: 'account_circle', title: 'users' },
   ];
 
-  isAuthenticated$: Observable<boolean> = of(true);
+  isAuthenticated$: Observable<boolean> = this.auth.isAuthenticated$;
   sidenavStatus = SidenavStatus.OPENED;
 
-  constructor(private router: Router) {}
+  constructor(private auth: AuthService) {}
 
   logout() {
-    this.router.navigateByUrl('login');
+    this.auth.logout();
   }
 
   toggleSidenav() {

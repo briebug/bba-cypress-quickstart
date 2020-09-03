@@ -48,14 +48,7 @@ export class LoginComponent implements OnInit {
         // Store the token
         this.authService.setToken(result['access_token']);
         // Redirect to home
-        this.router.navigate(['']);
+        this.router.navigateByUrl('/');
       });
-  }
-
-  loginEasy(email, password) {
-    // Store the token
-    this.authService.setToken('you_are_golden');
-    // Redirect to home
-    this.router.navigate(['']);
   }
 }

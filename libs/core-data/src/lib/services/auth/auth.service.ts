@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '@env/environment';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,9 +9,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   model = 'auth/login'
-  isAuthenticated$ = new BehaviorSubject(false);
+  isAuthenticated = new BehaviorSubject(false);
+  isAuthenticated$ = this.isAuthenticated.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.setToken(this.getToken());
   }
 
@@ -22,13 +24,18 @@ export class AuthService {
     return this.http.post(this.getUrl(), { email, password});
   }
 
+  check() {
+    return this.isAuthenticated.value;
+  }
+
   logout() {
     this.setToken('');
+    this.router.navigateByUrl('/login');
   }
 
   setToken(token) {
     localStorage.setItem('token', token);
-    this.isAuthenticated$.next(token !== ''); // Could be more Robust
+    this.isAuthenticated.next(token !== ''); // Could be more robust
   }
 
   getToken() {
