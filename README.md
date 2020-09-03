@@ -42,3 +42,9 @@ Because Cypress ships with Nx, E2E tests can be run with the command below.
 ```
 npm run e2e
 ```
+
+Or even better, run this command.
+
+```
+nx run dashboard-e2e:e2e --watch
+```
