@@ -3,6 +3,7 @@
     <button
       *ngIf="isAuthenticated && sidenavEnabled"
       (click)="toggleSidenav.emit()"
+      data-cy="toggle-btn"
       mat-mini-fab
     >
       <mat-icon>menu</mat-icon>
@@ -12,9 +13,9 @@
     </span>
   </span>
   <span class="spacer"></span>
-  <button
+  <button class="login"
+    data-cy="login-btn"
     *ngIf="isAuthenticated"
-    class="login"
     (click)="logout.emit($event)"
     mat-mini-fab
   >

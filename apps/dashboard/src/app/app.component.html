@@ -7,7 +7,7 @@
 </bba-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav
+  <mat-sidenav #sidenav data-cy="side-nav"
     *ngIf="(isAuthenticated$ | async) as authenticated"
     [opened]="sidenavStatus === 'opened'" mode="side" class="app-sidenav">
     <ng-container>
@@ -17,8 +17,9 @@
         </a>
       </span>
       <mat-divider></mat-divider>
-      <mat-nav-list>
-        <mat-list-item *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active" data-cy="nav-link">
+      <mat-nav-list data-cy="nav-list">
+        <mat-list-item *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active"
+          attr.data-cy="nav-item-{{link.title}}">
           <mat-icon matListIcon>{{link.icon}}</mat-icon>
           {{link.title | uppercase}}
         </mat-list-item>

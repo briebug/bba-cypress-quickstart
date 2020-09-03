@@ -1,0 +1,26 @@
+[
+  {
+    "id": "f0217466-1ad8-4919-876a-0fed8d102145",
+    "title": "VP of Developer Growth",
+    "description": "Lukas Ruebbelke is the Vice President of Developer Growth at BrieBug, where he has the greatest job in the world. Lukas gets to spend his entire time mentoring and training developers to be effective and build things that people care about.\n\nLukas is also a Google Developer Expert, published author, conference speaker, event organizer, etc. His spirit animal is a red bull. ",
+    "firstName": "Lukas",
+    "lastName": "Ruebbelke",
+    "profilePic": "https://s3.amazonaws.com/uifaces/faces/twitter/stevedesigner/128.jpg"
+  },
+  {
+    "id": "1ffabd78-595f-46ba-8e7a-25326f54bc0d",
+    "title": "VP of Engineering",
+    "description": "Pending",
+    "firstName": "Dave",
+    "lastName": "Laursen",
+    "profilePic": "https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg"
+  },
+  {
+    "id": "359aacf3-33e9-421a-93bd-4a8a94ac8d72",
+    "title": "Senior Architect",
+    "description": "Pending",
+    "firstName": "John",
+    "lastName": "Bland",
+    "profilePic": "https://s3.amazonaws.com/uifaces/faces/twitter/justinrgraham/128.jpg"
+  }
+]
