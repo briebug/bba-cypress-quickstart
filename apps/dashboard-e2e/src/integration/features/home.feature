@@ -1,3 +1,7 @@
+# As a logged in user, I should see the home page
+# I should see a list of available courses
+# I should see a list of available lessons for each course
+
 Feature: Courses
 
   As an autheticated user
