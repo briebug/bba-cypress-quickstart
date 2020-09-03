@@ -21,12 +21,13 @@ npm i
 npm run serve:all
 ```
 
-The `serve:all` command is a convenience methods that runs two other commands concurrently. You can run each command separately if you need to. 
+The `serve:all` command is a convenience methods that runs the `serve:auth` and `serve:web` commands concurrently. You can run each command separately if you need to. If you want to run the application without authentication, use the `serve:api` in place of `serve:auth`.
 
 ```
-"serve:web": "ng serve --open",
+"serve:auth": "node server/server.js",
 "serve:api": "json-server server/db.json",
-"serve:all": "concurrently \"npm run serve:api\" \"npm run serve:web\" \"npm run serve:mobile\""
+"serve:web": "ng serve --open",
+"serve:all": "concurrently \"npm run serve:auth\" \"npm run serve:web\""
 ```
 
 The web application will open to [http://localhost:4200](http://localhost:4200) in your browser.
