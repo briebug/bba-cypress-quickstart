@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login } from '@bba/api-interfaces';
+import { AuthService } from '@bba/core-data';
 
 export const filters = [
   'ig-xpro2',
@@ -36,11 +38,24 @@ export class LoginComponent implements OnInit {
 
   chosenFilter = filters[Math.floor(Math.random() * filters.length)];
 
-  constructor() {}
+  constructor(private router: Router, private authService: AuthService) { }
 
-  ngOnInit(): void {}
+  ngOnInit() { }
 
-  login(loginInfo: Login) {
-    // Handle auth event
+  login(email, password) {
+    this.authService.login(email, password)
+      .subscribe(result => {
+        // Store the token
+        this.authService.setToken(result['access_token']);
+        // Redirect to home
+        this.router.navigate(['']);
+      });
+  }
+
+  loginEasy(email, password) {
+    // Store the token
+    this.authService.setToken('you_are_golden');
+    // Redirect to home
+    this.router.navigate(['']);
   }
 }

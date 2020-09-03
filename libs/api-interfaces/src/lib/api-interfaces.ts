@@ -35,6 +35,7 @@ export interface Lesson extends BaseEntity {
 
 export interface User extends BaseEntity {
   title: string;
+  role: string;
   description: string;
   firstName: string;
   lastName: string;

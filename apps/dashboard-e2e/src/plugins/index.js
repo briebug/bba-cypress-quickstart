@@ -10,13 +10,26 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-
 const { preprocessTypescript } = require('@nrwl/cypress/plugins/preprocessor');
 
-module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-
-  // Preprocess Typescript file using Nx helper
-  on('file:preprocessor', preprocessTypescript(config));
+module.exports = function (on, config) {
+  on(
+    'file:preprocessor',
+    preprocessTypescript(config, (wpConfig) => {
+      wpConfig.node = {
+        fs: 'empty',
+        child_process: 'empty',
+        readline: 'empty',
+      };
+      wpConfig.module.rules.push({
+        test: /\.feature$/,
+        use: [
+          {
+            loader: 'cypress-cucumber-preprocessor/loader',
+          },
+        ],
+      });
+      return wpConfig;
+    })
+  );
 };

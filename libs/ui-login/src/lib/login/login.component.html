@@ -6,7 +6,7 @@
           Login
         </mat-card-title>
       </mat-card-header>
-      <form (submit)="login(loginInfo)">
+      <form (submit)="login(loginInfo.email, loginInfo.password)">
         <mat-card-content>
           <mat-form-field class="full-width">
             <input
