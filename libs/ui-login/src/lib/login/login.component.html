@@ -12,6 +12,7 @@
             <input
               matInput
               placeholder="Email"
+              data-cy="login-email"
               [(ngModel)]="loginInfo.email"
               type="text"
               name="email"
@@ -21,6 +22,7 @@
             <input
               matInput
               placeholder="Password"
+              data-cy="login-password"
               [(ngModel)]="loginInfo.password"
               type="password"
               name="password"
@@ -28,7 +30,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button type="submit" mat-button color="primary">Login</button>
+          <button type="submit" data-cy="login-submit" mat-button color="primary">Login</button>
         </mat-card-actions>
       </form>
     </mat-card>

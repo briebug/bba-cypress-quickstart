@@ -96,6 +96,6 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
-    "stepDefinitions": "./src/integration"
+    "stepDefinitions": "./src/tests"
   }
 }

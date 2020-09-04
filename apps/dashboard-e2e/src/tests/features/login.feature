@@ -4,3 +4,12 @@
 # I should be able to login and see the home page
 
 # TODO: I should see an error message on failed login
+
+Feature: Logging In
+  As an authenticated user
+  I need to be able to log in
+
+  Scenario: Login as an admin
+    Given I am on the login page
+    When I login as an "admin"
+    Then I should be on the home page
