@@ -6,7 +6,6 @@
 # TODO: I should see an error message on failed login
 
 Feature: Logging In
-  As an authenticated user
   I need to be able to log in
 
   Scenario: Login as an admin
