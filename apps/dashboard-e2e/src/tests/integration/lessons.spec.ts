@@ -4,7 +4,7 @@ import {
 
 describe('Lessons', () => {
   beforeEach(() => {
-    cy.loadData();
+    cy.loadData(['courses', 'lessons']);
     cy.visit(state.route);
   });
 

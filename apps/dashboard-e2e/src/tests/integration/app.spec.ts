@@ -10,7 +10,7 @@ import {
 
 describe('Dashboard', () => {
   beforeEach(() => {
-    cy.loadData();
+    cy.loadData(['courses', 'lessons', 'users']);
     cy.visit('/');
   });
 
@@ -19,7 +19,7 @@ describe('Dashboard', () => {
       getToggleBtn().should('exist');
     });
 
-    it('should hide the side navigation panel on togglge click', () => {
+    it('should hide the side navigation panel on toggle click', () => {
       getToggleBtn().click();
       getSideNav().should('not.be.visible');
 

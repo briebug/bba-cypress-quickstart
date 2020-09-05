@@ -4,7 +4,7 @@ import {
 
 describe('Users', () => {
   beforeEach(() => {
-    cy.loadData();
+    cy.loadData(['users']);
     cy.visit(state.route);
   });
 

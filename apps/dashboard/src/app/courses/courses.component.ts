@@ -26,6 +26,10 @@ export class CoursesComponent implements OnInit {
     this.coursesFacade.selectCourse(null);
   }
 
+  resetForm() {
+    this.coursesFacade.selectCourse(null);
+  }
+
   selectCourse(course: Course) {
     this.coursesFacade.selectCourse(course.id);
   }

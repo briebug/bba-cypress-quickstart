@@ -8,7 +8,7 @@
   <div class="details-component">
     <bba-course-details [course]="selectedCourse$ | async"
       (saved)="saveCourse($event)"
-      (cancelled)="reset()">
+      (cancelled)="resetForm()">
     </bba-course-details>
   </div>
 </div>

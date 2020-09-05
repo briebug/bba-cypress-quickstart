@@ -1,7 +1,7 @@
 import { Before, Given, Then } from 'cypress-cucumber-preprocessor/steps';
 
 Before(() => {
-  cy.loadData();
+  cy.loadData(['courses', 'lessons']);
 });
 
 Given(`I have opened the application`, () => {
