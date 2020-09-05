@@ -1,3 +1,42 @@
 export const state = {
-  route: '/lessons'
+  route: '/lessons',
+  newMockLesson: {
+    id: 'E2E_LESSON_ID',
+    title: 'E2E Mock Lesson',
+    description: 'E2E Mock Description',
+  },
+  updatedMockLesson: {
+    id: 'E2E_LESSON_ID',
+    title: 'E2E Mock Lesson!!',
+    description: 'E2E Mock Description Updated',
+  }
 };
+
+export const getLessonsList = () => cy.get('[data-cy=lessons-list]');
+
+export const getLessons = () => cy.get('[data-cy=lessons-list]>mat-list-item');
+
+export const getLessonItem = (lesson) => cy.get(`[data-cy=lesson-${lesson.id}-item]`);
+
+export const getLessonTitle = (lesson) => cy.get(`[data-cy=lesson-${lesson.id}-item-title]`);
+
+export const getLessonDeleteBtn = (lesson) => cy.get(`[data-cy=delete-lesson-${lesson.id}-btn]`);
+
+export const selectLesson = (lesson) => getLessonItem(lesson).click();
+
+export const getLessonDetailsTitle = () => cy.get('[data-cy=lesson-details-title]');
+
+export const clearForm = () => cy.get('[data-cy=lesson-form-cancel').click();
+
+export const completeNewLessonForm = (lesson) => {
+  cy.get(`[data-cy=lesson-form-title]`).type(lesson.title, { delay: 20});
+  cy.get(`[data-cy=lesson-form-description]`).type(lesson.description, { delay: 20});
+  cy.get('[data-cy=lesson-form-save]').click();
+};
+
+export const completeUpdateLessonForm = (lesson) => {
+  cy.get(`[data-cy=lesson-form-title]`).clear().type(`${lesson.title}!!`, { delay: 20});
+  cy.get(`[data-cy=lesson-form-description]`).clear().type(`${lesson.description} updated`, { delay: 20});
+  cy.get('[data-cy=lesson-form-save]').click();
+};
+

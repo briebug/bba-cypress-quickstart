@@ -29,6 +29,10 @@ export class LessonsComponent implements OnInit {
     this.lessonsFacade.selectLesson(null);
   }
 
+  resetForm() {
+    this.lessonsFacade.selectLesson(null);
+  }
+
   loadLessons() {
     this.lessonsFacade.loadLessons();
   }

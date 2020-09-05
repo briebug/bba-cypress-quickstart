@@ -8,7 +8,7 @@
   <div class="details-component">
     <bba-user-details [user]="selectedUser$ | async"
       (saved)="saveUser($event)"
-      (cancelled)="reset()">
+      (cancelled)="resetForm()">
     </bba-user-details>
   </div>
 </div>

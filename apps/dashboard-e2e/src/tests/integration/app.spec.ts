@@ -12,7 +12,7 @@ describe('Dashboard', () => {
   beforeEach(() => {
     cy.loadData(['courses', 'lessons', 'users']);
     cy.visit('/');
-  });
+  })
 
   describe('Header', () => {
     it('should display the toggle button', () => {

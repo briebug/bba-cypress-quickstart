@@ -62,7 +62,7 @@ Cypress.Commands.add('createEntity', (model, entity) => {
 
 Cypress.Commands.add('updateEntity', (model, entity) => {
   cy.server();
-  cy.route('POST', `${API_URL}/${model}`, { entity });
+  cy.route('PUT', `${API_URL}/${model}/${entity.id}`, { entity });
   cy.addEntity(model, entity);
 });
 

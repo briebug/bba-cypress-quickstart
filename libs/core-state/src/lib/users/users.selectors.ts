@@ -1,3 +1,4 @@
+import { User } from '@bba/api-interfaces';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { USERS_FEATURE_KEY, UsersState, usersAdapter } from './users.reducer';
 
@@ -35,5 +36,17 @@ export const getSelectedUserId = createSelector(
 export const getSelectedUser = createSelector(
   getUsersEntities,
   getSelectedUserId,
-  (entities, selectedId) => selectedId && entities[selectedId]
+  (entities, selectedId) => {
+    const emptyUser: User = {
+      id: '',
+      role: '',
+      title: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    }
+
+    return selectedId ? entities[selectedId] : emptyUser;
+  }
 );

@@ -26,6 +26,10 @@ export class UsersComponent implements OnInit {
     this.usersFacade.selectUser(null);
   }
 
+  resetForm() {
+    this.usersFacade.selectUser(null);
+  }
+
   loadUsers() {
     this.usersFacade.loadUsers();
   }
