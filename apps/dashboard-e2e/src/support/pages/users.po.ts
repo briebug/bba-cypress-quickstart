@@ -1,5 +1,6 @@
 export const state = {
   route: '/users',
+  homeRoute: '/',
   newMockUser: {
     id: 'E2E_LESSON_ID',
     title: 'E2E Mock User',
@@ -11,6 +12,8 @@ export const state = {
   updatedMockUser: {
     id: 'E2E_LESSON_ID',
     title: 'E2E Mock User',
+    firstName: 'Mock First Name',
+    lastName: 'Mock Last Name',
   }
 };
 
@@ -44,3 +47,17 @@ export const completeUpdateUserForm = (user) => {
   cy.get('[data-cy=user-form-save]').click();
 };
 
+export const createUser = (model, user) => {
+  cy.createEntity(model, user);
+  completeNewUserForm(user);
+};
+
+export const updateUser = (model, user) => {
+  cy.updateEntity(model, user);
+  completeUpdateUserForm(user);
+};
+
+export const deleteUser = (model, user) => {
+  cy.deleteEntity(model, user);
+  getUserDeleteBtn(user).click();
+};

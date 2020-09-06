@@ -1,5 +1,6 @@
 export const state = {
   route: '/lessons',
+  homeRoute: '/',
   newMockLesson: {
     id: 'E2E_LESSON_ID',
     title: 'E2E Mock Lesson',
@@ -40,3 +41,17 @@ export const completeUpdateLessonForm = (lesson) => {
   cy.get('[data-cy=lesson-form-save]').click();
 };
 
+export const createLesson = (model, lesson) => {
+  cy.createEntity(model, lesson);
+  completeNewLessonForm(lesson);
+};
+
+export const updateLesson = (model, lesson) => {
+  cy.updateEntity(model, lesson);
+  completeUpdateLessonForm(lesson);
+};
+
+export const deleteLesson = (model, lesson) => {
+  cy.deleteEntity(model, lesson);
+  getLessonDeleteBtn(lesson).click();
+};
