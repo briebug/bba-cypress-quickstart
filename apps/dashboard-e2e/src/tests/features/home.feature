@@ -1,8 +1,4 @@
-# As a logged in user, I should see the home page
-# I should see a list of available courses
-# I should see a list of available lessons for each course
-
-Feature: Courses
+Feature: Home
 
   As an autheticated user
   I need to be able to work from the home page

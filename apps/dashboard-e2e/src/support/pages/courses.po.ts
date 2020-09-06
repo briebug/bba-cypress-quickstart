@@ -1,5 +1,6 @@
 export const state = {
   route: '/courses',
+  homeRoute: '/',
   newMockCourse: {
     id: 'E2E_COURSE_ID',
     title: 'E2E Mock Course',
@@ -26,7 +27,7 @@ export const selectCourse = (course) => getCourseItem(course).click();
 
 export const getCourseDetailsTitle = () => cy.get('[data-cy=course-details-title]');
 
-export const clearForm = () => cy.get('[data-cy=course-form-cancel').click();
+export const clearForm = () => cy.get('[data-cy=course-form-cancel]').click();
 
 export const completeNewCourseForm = (course) => {
   cy.get(`[data-cy=course-form-title]`).type(course.title, { delay: 20});
@@ -38,4 +39,19 @@ export const completeUpdateCourseForm = (course) => {
   cy.get(`[data-cy=course-form-title]`).clear().type(`${course.title}!!`, { delay: 20});
   cy.get(`[data-cy=course-form-description]`).clear().type(`${course.description} updated`, { delay: 20});
   cy.get('[data-cy=course-form-save]').click();
+};
+
+export const createCourse = (model, course) => {
+  cy.createEntity(model, course);
+  completeNewCourseForm(course);
+};
+
+export const updateCourse = (model, course) => {
+  cy.updateEntity(model, course);
+  completeUpdateCourseForm(course);
+};
+
+export const deleteCourse = (model, course) => {
+  cy.deleteEntity(model, course);
+  getCourseDeleteBtn(course).click();
 };

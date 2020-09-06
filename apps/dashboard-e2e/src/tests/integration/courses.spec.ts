@@ -1,13 +1,13 @@
 import {
   clearForm,
-  completeNewCourseForm,
-  completeUpdateCourseForm,
-  getCourseDeleteBtn,
+  createCourse,
+  deleteCourse,
   getCourseDetailsTitle,
   getCourseItem,
   getCourses,
   selectCourse,
   state,
+  updateCourse
 } from '../../support/pages/courses.po';
 
 describe('Courses', () => {
@@ -29,8 +29,7 @@ describe('Courses', () => {
   });
 
   it('should create a course', () => {
-    cy.createEntity(model, state.newMockCourse);
-    completeNewCourseForm(state.newMockCourse);
+    createCourse(model, state.newMockCourse);
     getCourseItem(state.newMockCourse).should('exist');
   });
 
@@ -47,15 +46,13 @@ describe('Courses', () => {
   });
 
   it('should update a course', () => {
-    cy.updateEntity(model, state.updatedMockCourse);
     selectCourse(state.updatedMockCourse);
-    completeUpdateCourseForm(state.updatedMockCourse);
+    updateCourse(model, state.updatedMockCourse);
     getCourseItem(state.updatedMockCourse).should('exist');
   });
 
   it('should delete a course', () => {
-    cy.deleteEntity(model, state.updatedMockCourse);
-    getCourseDeleteBtn(state.updatedMockCourse).click();
+    deleteCourse(model, state.updatedMockCourse);
     getCourseItem(state.updatedMockCourse).should('not.exist');
     getCourses().should('have.length', courses.length);
   });
