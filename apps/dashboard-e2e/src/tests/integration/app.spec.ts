@@ -1,4 +1,11 @@
 import {
+  checkLoginBtn,
+  checkMenuItems,
+  checkMenuLinks,
+  checkSideNav,
+  checkSideNavVisibility,
+  checkToggleBtn,
+  checkToolbarTitle,
   getLoginBtn,
   getNavItem,
   getNavList,
@@ -15,46 +22,31 @@ describe('Dashboard', () => {
   })
 
   describe('Header', () => {
-    it('should display the toggle button', () => {
-      getToggleBtn().should('exist');
-    });
+    it('should display the toggle button', () => checkToggleBtn());
 
     it('should hide the side navigation panel on toggle click', () => {
       getToggleBtn().click();
-      getSideNav().should('not.be.visible');
+      checkSideNavVisibility(false);
 
       getToggleBtn().click();
-      getSideNav().should('be.visible');
+      checkSideNavVisibility(true);
     });
 
-    it('should display the login button', () => {
-      getLoginBtn().should('exist');
-    });
+    it('should display the login button', () => checkLoginBtn());
 
     it('should navigate to the login page on login button click', () => {
       getLoginBtn().click();
       cy.checkLocation(state.loginRoute);
     });
 
-    it('should display the correct title', () => {
-      getTitle().should('contain', state.title);
-    });
+    it('should display the correct title', () => checkToolbarTitle(state.title));
   });
 
   describe('Side Nav', () => {
-    it('should display the side navigation', () => {
-      getSideNav().should('exist');
-    });
+    it('should display the side navigation', () => checkSideNav());
 
-    it('should display all menu items', () => {
-      getNavList().should('have.length', state.links.length);
-    });
+    it('should display all menu items', () => checkMenuItems(state.links));
 
-    it('should properly navigate on click', () => {
-      state.links.forEach((link) => {
-        getNavItem(link.title).click();
-        cy.checkLocation(link.path);
-      });
-    });
+    it('should properly navigate on click', () => checkMenuLinks(state.links));
   });
 });

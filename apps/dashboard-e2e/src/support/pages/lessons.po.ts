@@ -55,3 +55,9 @@ export const deleteLesson = (model, lesson) => {
   cy.deleteEntity(model, lesson);
   getLessonDeleteBtn(lesson).click();
 };
+
+export const checkLessonsReadOnly = (lessons) => {
+  lessons.forEach((lesson) => {
+    getLessonDeleteBtn(lesson).should('not.exist');
+  });
+};

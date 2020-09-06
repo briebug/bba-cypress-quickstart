@@ -3,31 +3,26 @@ Feature: Courses
   As an autheticated user
   I need to be able to work with courses
 
-  @focus
   Scenario: Navigate to courses
     Given I am on the home page
     And I navigate to the "courses" page
     Then I should see "courses" in the URL
 
-  @focus
   Scenario: View a list of courses
     Given I am on the "courses" page
     Then I should see courses in the courses list
 
-  @focus
   Scenario: Create a course
     Given I am on the "courses" page
     And I have just created a new course
     Then I should see that course in the courses list
 
-  @focus
   Scenario: Select a course
     Given I am on the "courses" page
     And I have just created a new course
     And I select the new course
     Then I should see the new course details
 
-  @focus
   Scenario: Cancel course selection
     Given I am on the "courses" page
     And I have just created a new course
@@ -35,7 +30,6 @@ Feature: Courses
     And I click on the cancel button
     Then I should see the details form reset
 
-  @focus
   Scenario: Update a course
     Given I am on the "courses" page
     And I have just created a new course
@@ -44,7 +38,6 @@ Feature: Courses
     And I select the updated course
     Then I should see the updated course details
 
-  @focus
   Scenario: Delete a course
     Given I am on the "courses" page
     And I have just created a new course

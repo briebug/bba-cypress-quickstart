@@ -3,31 +3,26 @@ Feature: Lessons
   As an autheticated user
   I need to be able to work with lessons
 
-  @focus
   Scenario: Navigate to lessons
     Given I am on the home page
     And I navigate to the "lessons" page
     Then I should see "lessons" in the URL
 
-  @focus
   Scenario: View a list of lessons
     Given I am on the "lessons" page
     Then I should see lessons in the lessons list
 
-  @focus
   Scenario: Create a lesson
     Given I am on the "lessons" page
     And I have just created a new lesson
     Then I should see that lesson in the lessons list
 
-  @focus
   Scenario: Select a lesson
     Given I am on the "lessons" page
     And I have just created a new lesson
     And I select the new lesson
     Then I should see the new lesson details
 
-  @focus
   Scenario: Cancel lesson selection
     Given I am on the "lessons" page
     And I have just created a new lesson
@@ -35,7 +30,6 @@ Feature: Lessons
     And I click on the cancel button
     Then I should see the details form reset
 
-  @focus
   Scenario: Update a lesson
     Given I am on the "lessons" page
     And I have just created a new lesson
@@ -44,7 +38,6 @@ Feature: Lessons
     And I select the updated lesson
     Then I should see the updated lesson details
 
-  @focus
   Scenario: Delete a lesson
     Given I am on the "lessons" page
     And I have just created a new lesson

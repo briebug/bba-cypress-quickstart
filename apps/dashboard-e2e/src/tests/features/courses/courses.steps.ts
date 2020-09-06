@@ -22,10 +22,6 @@ Before(() => {
 
 Given(`I am on the home page`, () => cy.checkLocation(state.homeRoute));
 
-Given(`I am on the {string} page`, (page) => cy.visit(`/${page}`));
-
-When('I navigate to the {string} page', (page) => cy.visit(`/${page}`));
-
 When('I have just created a new course', () => createCourse(model, state.newMockCourse));
 
 When('I update the course', () => updateCourse(model, state.updatedMockCourse))
