@@ -8,21 +8,21 @@ export interface Login {
   password: string;
 }
 
-export interface Author extends BaseEntity {
+export interface User extends BaseEntity {
   title: string;
+  role: string;
   description: string;
   firstName: string;
   lastName: string;
+  email: string;
+  password: string;
   profilePic: string;
-  courses?: Course[];
 }
 
 export interface Course extends BaseEntity {
   title: string;
   description: string;
   thumbnail: string;
-  authorId: any;
-  author?: Author;
   lessons?: Lesson[];
 }
 
@@ -33,11 +33,11 @@ export interface Lesson extends BaseEntity {
   courseId: any;
 }
 
-export interface User extends BaseEntity {
+export interface Author extends BaseEntity {
   title: string;
-  role: string;
+  description: string;
   firstName: string;
   lastName: string;
-  email: string;
-  password: string;
+  profilePic: string;
+  courses?: Course[];
 }

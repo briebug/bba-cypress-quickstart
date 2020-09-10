@@ -44,7 +44,6 @@ export const getSelectedCourse = createSelector(
   (entities, selectedId) => {
     const emptyCourse: Course = {
       id: null,
-      authorId: null,
       title: '',
       description: '',
       thumbnail: ''

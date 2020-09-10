@@ -41,10 +41,12 @@ export const getSelectedUser = createSelector(
       id: '',
       role: '',
       title: '',
+      description: '',
       firstName: '',
       lastName: '',
       email: '',
       password: '',
+      profilePic: '',
     }
 
     return selectedId ? entities[selectedId] : emptyUser;
