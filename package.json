@@ -30,7 +30,7 @@
     "serve:json": "json-server server/db.json",
     "serve:api": "nx run api:serve",
     "serve:web": "ng serve --open",
-    "serve:all": "concurrently \"npm run serve:auth\" \"npm run serve:web\""
+    "serve:all": "concurrently \"npm run serve:api\" \"npm run serve:web\""
   },
   "private": true,
   "dependencies": {
@@ -67,6 +67,7 @@
     "rxjs": "~6.5.5",
     "sqlite3": "^5.0.0",
     "typeorm": "^0.2.25",
+    "uuid": "^8.3.0",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {

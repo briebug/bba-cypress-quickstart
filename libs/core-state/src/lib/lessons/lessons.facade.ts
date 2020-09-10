@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Lesson } from '@bba/api-interfaces';
 import { Action, ActionsSubject, select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
-
+import { v4 as uuidv4 } from 'uuid';
 import * as LessonsActions from './lessons.actions';
-import * as LessonsSelectors from './lessons.selectors';
 import * as fromLessons from './lessons.reducer';
+import * as LessonsSelectors from './lessons.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +42,8 @@ export class LessonsFacade {
   }
 
   createLesson(lesson: Lesson) {
-    this.dispatch(LessonsActions.createLesson({ lesson }));
+    // We are generate the UUID at the client because of a sqlite limitation
+    this.dispatch(LessonsActions.createLesson({ lesson: Object.assign({}, lesson, { id: uuidv4()}) }));
   }
 
   updateLesson(lesson: Lesson) {

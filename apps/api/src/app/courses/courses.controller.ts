@@ -19,23 +19,23 @@ export class CoursesController {
     return this.coursesService.getAll();
   }
 
-  // @Get(':id')
-  // find(@Param() id: string): Course {
-  //   return this.coursesService.get(id);
-  // }
+  @Get(':id')
+  find(@Param() id: string): Promise<Course> {
+    return this.coursesService.get(id);
+  }
 
-  // @Post()
-  // create(@Body() course: Course): Course {
-  //   return this.coursesService.create(course);
-  // }
+  @Post()
+  create(@Body() course: Course): Promise<Course> {
+    return this.coursesService.create(course);
+  }
 
-  // @Put(':id')
-  // update(@Param('id') id: number, @Body() course: Course) {
-  //   return this.coursesService.update(course);
-  // }
+  @Put(':id')
+  update(@Param('id') id: string, @Body() course: Course): Promise<Course> {
+    return this.coursesService.update(course);
+  }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.coursesService.delete(id);
-  // }
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.coursesService.delete(id);
+  }
 }

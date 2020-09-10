@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+const { v4: uuidv4 } = require('uuid');
 const db = require('better-sqlite3')('database.sqlite', { verbose: console.log });
 
 const courses = [
@@ -86,7 +86,7 @@ const getEndChar = (key, arr) => {
 const buildCourseRows = (courses) => {
   let rows = '';
   courses.forEach((course, key, arr) => {
-    rows += `('${course.title}', '${course.description}', '${course.thumbnail}')`;
+    rows += `('${uuidv4()}', '${course.title}', '${course.description}', '${course.thumbnail}')`;
     rows += getEndChar(key, arr);
   });
   return rows;
@@ -96,7 +96,7 @@ const buildLessonRows = (lessons, courseIds) => {
   let rows = '';
   lessons.forEach((lesson, key, arr) => {
     const courseId = courseIds[Math.floor(Math.random()*courseIds.length)]['id'];
-    rows += `('${lesson.title}', '${lesson.description}', '${lesson.videoUri}', '${courseId}')`;
+    rows += `('${uuidv4()}', '${lesson.title}', '${lesson.description}', '${lesson.videoUri}', '${courseId}')`;
     rows += getEndChar(key, arr);
   });
   return rows;
@@ -105,14 +105,14 @@ const buildLessonRows = (lessons, courseIds) => {
 const buildUserRows = (users) => {
   let rows = '';
   users.forEach((user, key, arr) => {
-    rows += `('${user.title}', '${user.role}', '${user.description}', '${user.firstName}', '${user.lastName}', '${user.email}', '${user.password}', '${user.profilePic}')`;
+    rows += `('${uuidv4()}', '${user.title}', '${user.role}', '${user.description}', '${user.firstName}', '${user.lastName}', '${user.email}', '${user.password}', '${user.profilePic}')`;
     rows += getEndChar(key, arr);
   });
   return rows;
 };
 
 const insertCourses = (courses) => {
-  const query = `INSERT INTO course (title, description, thumbnail)
+  const query = `INSERT INTO course (id, title, description, thumbnail)
     VALUES
     ${buildCourseRows(courses)};
   `;
@@ -121,7 +121,7 @@ const insertCourses = (courses) => {
 };
 
 const insertLessons = (lessons) => {
-  const query = `INSERT INTO lesson (title, description, videoUri, courseId)
+  const query = `INSERT INTO lesson (id, title, description, videoUri, courseId)
     VALUES
     ${buildLessonRows(lessons, getCourseIds())};
   `;
@@ -130,7 +130,7 @@ const insertLessons = (lessons) => {
 };
 
 const insertUsers = (users) => {
-  const query = `INSERT INTO user (title, role, description, firstName, lastName, email, password, profilePic)
+  const query = `INSERT INTO user (id, title, role, description, firstName, lastName, email, password, profilePic)
     VALUES
     ${buildUserRows(users)};
   `;

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { User } from '@bba/api-interfaces';
 import { Action, ActionsSubject, select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
-
+import { v4 as uuidv4 } from 'uuid';
 import * as UsersActions from './users.actions';
-import * as UsersSelectors from './users.selectors';
 import * as fromUsers from './users.reducer';
+import * as UsersSelectors from './users.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +42,8 @@ export class UsersFacade {
   }
 
   createUser(user: User) {
-    this.dispatch(UsersActions.createUser({ user }));
+    // We are generate the UUID at the client because of a sqlite limitation
+    this.dispatch(UsersActions.createUser({ user: Object.assign({}, user, { id: uuidv4()}) }));
   }
 
   updateUser(user: User) {

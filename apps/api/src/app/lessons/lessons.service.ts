@@ -1,5 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { DeleteResult, Repository } from 'typeorm';
 import { Lesson } from '../database/entities/lesson.entity';
 
 @Injectable()
@@ -13,16 +13,23 @@ export class LessonsService {
     return this.lessonsRepository.find();
   }
 
-  // get(id: string): Lesson {
-  //   return emptyLesson;
-  // }
-  // create(lesson: Lesson): Lesson {
-  //   return emptyLesson;
-  // }
-  // update(lesson: Lesson): Lesson {
-  //   return emptyLesson;
-  // }
-  // delete(id: string): Lesson {
-  //   return emptyLesson;
-  // }
+  async get(id: string): Promise<Lesson> {
+    const lesson = await this.lessonsRepository.findOne(id);
+    if (!lesson) throw new NotFoundException();
+    return lesson;
+  }
+
+  async create(lesson: Lesson): Promise<Lesson> {
+    return await this.lessonsRepository.save(lesson);
+  }
+
+  async update(lesson: Lesson): Promise<Lesson> {
+    return await this.lessonsRepository.save(lesson);
+  }
+
+  async delete(id: string): Promise<DeleteResult> {
+    const lesson = await this.lessonsRepository.findOne(id);
+    if (!lesson) throw new NotFoundException();
+    return await this.lessonsRepository.delete(id);
+  }
 }

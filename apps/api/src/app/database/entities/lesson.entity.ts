@@ -3,8 +3,8 @@ import { Course } from './course.entity';
 
 @Entity()
 export class Lesson {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   title: string;
@@ -16,9 +16,9 @@ export class Lesson {
   videoUri: string;
 
   @Column()
-  courseId: number;
+  courseId: string;
 
   @ManyToOne(() => Course)
-  @JoinColumn({ name: "courseId" })
+  @JoinColumn({ name: 'courseId' })
   course: Course;
 }

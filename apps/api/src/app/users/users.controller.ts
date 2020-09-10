@@ -19,23 +19,23 @@ export class UsersController {
     return this.usersService.getAll();
   }
 
-  // @Get(':id')
-  // find(@Param() id: string): User {
-  //   return this.usersService.get(id);
-  // }
+  @Get(':id')
+  find(@Param() id: string): Promise<User> {
+    return this.usersService.get(id);
+  }
 
-  // @Post()
-  // create(@Body() user: User): User {
-  //   return this.usersService.create(user);
-  // }
+  @Post()
+  create(@Body() user: User): Promise<User> {
+    return this.usersService.create(user);
+  }
 
-  // @Put(':id')
-  // update(@Param('id') id: number, @Body() user: User) {
-  //   return this.usersService.update(user);
-  // }
+  @Put(':id')
+  update(@Param('id') id: string, @Body() user: User): Promise<User> {
+    return this.usersService.update(user);
+  }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.delete(id);
-  // }
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.usersService.delete(id);
+  }
 }
