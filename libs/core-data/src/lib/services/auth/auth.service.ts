@@ -20,8 +20,8 @@ export class AuthService {
     return `${environment.apiEndpoint}${this.model}`;
   }
 
-  login(email, password) {
-    return this.http.post(this.getUrl(), { email, password});
+  login(username, password) {
+    return this.http.post(this.getUrl(), { username, password });
   }
 
   check() {

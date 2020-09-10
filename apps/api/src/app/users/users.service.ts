@@ -13,6 +13,10 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
+  async findOne(email: string): Promise<User | undefined> {
+    return await this.usersRepository.findOne({ email });
+  }
+
   async get(id: string): Promise<User> {
     const user = await this.usersRepository.findOne(id);
     if (!user) throw new NotFoundException();
