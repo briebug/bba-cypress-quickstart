@@ -23,7 +23,7 @@ declare namespace Cypress {
   }
 }
 
-const API_URL = 'http://localhost:3000';
+const API_URL = Cypress.config('apiUrl') ;
 
 Cypress.Commands.add('login', (email, password) => {
   const jwt = require('jsonwebtoken');

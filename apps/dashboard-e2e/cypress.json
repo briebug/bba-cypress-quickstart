@@ -13,5 +13,6 @@
   "screenshotsFolder": "../../dist/cypress/apps/dashboard-e2e/screenshots",
   "chromeWebSecurity": false,
   "ignoreTestFiles": "**.steps.ts",
-  "baseUrl": "http://localhost:4200/"
+  "baseUrl": "http://localhost:4200/",
+  "apiUrl": "http://localhost:3333/api/"
 }
