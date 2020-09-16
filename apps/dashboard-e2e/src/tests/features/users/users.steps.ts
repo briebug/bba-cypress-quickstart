@@ -1,11 +1,11 @@
 import { Before, Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
 import {
+  checkUser,
+  checkUserDetailsTitle,
+  checkUsersLength,
   clearForm,
   createUser,
   deleteUser,
-  getUserDetailsTitle,
-  getUserItem,
-  getUsers,
   selectUser,
   state,
   updateUser,
@@ -26,9 +26,11 @@ Given(`I am on the {string} page`, (page) => cy.visit(`/${page}`));
 
 When('I navigate to the {string} page', (page) => cy.visit(`/${page}`));
 
-When('I have just created a new user', () => createUser(model, state.newMockUser));
+When('I have just created a new user', () => {
+  createUser(model, state.newMockUser);
+});
 
-When('I update the user', () => updateUser(model, state.updatedMockUser))
+When('I update the user', () => updateUser(model, state.updatedMockUser));
 
 When('I delete the new user', () => deleteUser(model, state.newMockUser));
 
@@ -44,31 +46,31 @@ When('I select the updated user', () => {
 
 When('I click on the cancel button', () => clearForm());
 
-Then('I should see the details form reset', () =>
-  getUserDetailsTitle().should('contain.text', `Select User`)
-);
+Then('I should see the details form reset', () => {
+  checkUserDetailsTitle(`Select User`);
+});
 
 Then('I should see {string} in the URL', (route) => {
   cy.checkLocation(`/${route}`);
 });
 
-Then('I should see users in the users list', () => {
-  getUsers().should('have.length', users.length);
-});
+Then('I should see users in the users list', () => checkUsersLength(users));
 
 Then('I should see that user in the users list', () => {
-  getUserItem(state.newMockUser).should('exist');
+  checkUser(state.newMockUser);
 });
 
 Then('I should see the new user details', () => {
-  getUserDetailsTitle().should('contain.text', `Editing ${state.newMockUser.firstName} ${state.newMockUser.lastName}`);
+  const title = `Editing ${state.newMockUser.firstName} ${state.newMockUser.lastName}`;
+  checkUserDetailsTitle(title);
 });
 
 Then('I should see the updated user details', () => {
-  getUserDetailsTitle().should('contain.text', `Editing ${state.updatedMockUser.firstName} ${state.updatedMockUser.lastName}`);
+  const title = `Editing ${state.updatedMockUser.firstName} ${state.updatedMockUser.lastName}`;
+  checkUserDetailsTitle(title);
 });
 
 Then('I should not see the new user in the list', () => {
-  getUserItem(state.updatedMockUser).should('not.exist');
-  getUsers().should('have.length', users.length);
+  checkUser(state.updatedMockUser, false);
+  checkUsersLength(users);
 });

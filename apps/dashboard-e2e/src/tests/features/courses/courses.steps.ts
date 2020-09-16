@@ -1,5 +1,8 @@
 import { Before, Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
 import {
+  checkCourseDetailsTitle,
+  checkCourse,
+  checkCoursesLength,
   clearForm,
   createCourse,
   deleteCourse,
@@ -22,9 +25,11 @@ Before(() => {
 
 Given(`I am on the home page`, () => cy.checkLocation(state.homeRoute));
 
-When('I have just created a new course', () => createCourse(model, state.newMockCourse));
+When('I have just created a new course', () => {
+  createCourse(model, state.newMockCourse);
+});
 
-When('I update the course', () => updateCourse(model, state.updatedMockCourse))
+When('I update the course', () => updateCourse(model, state.updatedMockCourse));
 
 When('I delete the new course', () => deleteCourse(model, state.newMockCourse));
 
@@ -40,31 +45,31 @@ When('I select the updated course', () => {
 
 When('I click on the cancel button', () => clearForm());
 
-Then('I should see the details form reset', () =>
-  getCourseDetailsTitle().should('contain.text', `Select Course`)
-);
+Then('I should see the details form reset', () => {
+  checkCourseDetailsTitle('Select Course');
+});
 
 Then('I should see {string} in the URL', (route) => {
   cy.checkLocation(`/${route}`);
 });
 
 Then('I should see courses in the courses list', () => {
-  getCourses().should('have.length', courses.length);
+  checkCoursesLength(courses);
 });
 
 Then('I should see that course in the courses list', () => {
-  getCourseItem(state.newMockCourse).should('exist');
+  checkCourse(state.newMockCourse);
 });
 
 Then('I should see the new course details', () => {
-  getCourseDetailsTitle().should('contain.text', `Editing ${state.newMockCourse.title}`);
+  checkCourseDetailsTitle(`Editing ${state.newMockCourse.title}`);
 });
 
 Then('I should see the updated course details', () => {
-  getCourseDetailsTitle().should('contain.text', `Editing ${state.updatedMockCourse.title}`);
+  checkCourseDetailsTitle(`Editing ${state.updatedMockCourse.title}`);
 });
 
 Then('I should not see the new course in the list', () => {
-  getCourseItem(state.updatedMockCourse).should('not.exist');
-  getCourses().should('have.length', courses.length);
+  checkCourse(state.updatedMockCourse, false);
+  checkCoursesLength(courses);
 });

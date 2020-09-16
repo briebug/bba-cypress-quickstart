@@ -27,9 +27,9 @@ export const getUserTitle = (user) => cy.get(`[data-cy=user-${user.id}-item-titl
 
 export const getUserDeleteBtn = (user) => cy.get(`[data-cy=delete-user-${user.id}-btn]`);
 
-export const selectUser = (user) => getUserItem(user).click();
-
 export const getUserDetailsTitle = () => cy.get('[data-cy=user-details-title]');
+
+export const selectUser = (user) => getUserItem(user).click();
 
 export const clearForm = () => cy.get('[data-cy=user-form-cancel').click();
 
@@ -60,4 +60,17 @@ export const updateUser = (model, user) => {
 export const deleteUser = (model, user) => {
   cy.deleteEntity(model, user);
   getUserDeleteBtn(user).click();
+};
+
+export const checkUserDetailsTitle = (title) => {
+  getUserDetailsTitle().should('contain.text', title);
+};
+
+export const checkUsersLength = (users) => {
+  getUsers().should('have.length', users.length);
+};
+
+export const checkUser = (user, exists = true) => {
+  const condition = exists ? 'exist' : 'not.exist';
+  getUserItem(user).should(condition);
 };

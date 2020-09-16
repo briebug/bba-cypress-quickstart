@@ -23,9 +23,9 @@ export const getLessonTitle = (lesson) => cy.get(`[data-cy=lesson-${lesson.id}-i
 
 export const getLessonDeleteBtn = (lesson) => cy.get(`[data-cy=delete-lesson-${lesson.id}-btn]`);
 
-export const selectLesson = (lesson) => getLessonItem(lesson).click();
-
 export const getLessonDetailsTitle = () => cy.get('[data-cy=lesson-details-title]');
+
+export const selectLesson = (lesson) => getLessonItem(lesson).click();
 
 export const clearForm = () => cy.get('[data-cy=lesson-form-cancel').click();
 
@@ -60,4 +60,17 @@ export const checkLessonsReadOnly = (lessons) => {
   lessons.forEach((lesson) => {
     getLessonDeleteBtn(lesson).should('not.exist');
   });
+};
+
+export const checkLessonDetailsTitle = (title) => {
+  getLessonDetailsTitle().should('contain.text', title);
+};
+
+export const checkLessonsLength = (lessons) => {
+  getLessons().should('have.length', lessons.length);
+};
+
+export const checkLesson = (lesson, exists = true) => {
+  const condition = exists ? 'exist' : 'not.exist';
+  getLessonItem(lesson).should(condition);
 };

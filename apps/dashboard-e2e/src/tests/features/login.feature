@@ -10,13 +10,13 @@ Feature: Logging In
   @Login
   Scenario: Login as a manager
     Given I am on the login page
-    When I login as an "manager"
+    When I login as a "manager"
     Then I should be on the home page
 
   @Login
   Scenario: Login as a user
     Given I am on the login page
-    When I login as an "user"
+    When I login as a "user"
     Then I should be on the home page
 
   @Logout

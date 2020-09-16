@@ -1,5 +1,4 @@
-import { Before, Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
-
+import { Before, Then, When } from 'cypress-cucumber-preprocessor/steps';
 import {
   checkLoginBtn,
   checkMenuItems,
@@ -7,9 +6,9 @@ import {
   checkSideNavVisibility,
   checkToggleBtn,
   checkToolbarTitle,
-  getLoginBtn,
-  getToggleBtn,
-  state,
+  clickLoginBtn,
+  clickToggleBtn,
+  state
 } from '../../../support/pages/app.po';
 
 Before(() => {
@@ -17,9 +16,9 @@ Before(() => {
   cy.visit('/');
 });
 
-When('I click the login button', () => getLoginBtn().click());
+When('I click the login button', () => clickLoginBtn());
 
-When('I click the toggle button', () => getToggleBtn().click());
+When('I click the toggle button', () => clickToggleBtn());
 
 Then('I should see the toggle button', () => checkToggleBtn());
 

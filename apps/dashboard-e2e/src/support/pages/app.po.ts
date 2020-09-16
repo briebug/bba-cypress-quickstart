@@ -23,6 +23,10 @@ export const getNavList = () => cy.get('[data-cy=nav-list]>mat-list-item');
 
 export const getNavItem = (item) => cy.get(`[data-cy=nav-item-${item}]`);
 
+export const clickLoginBtn = () => getLoginBtn().click();
+
+export const clickToggleBtn = () => getToggleBtn().click();
+
 export const checkToggleBtn = () => getToggleBtn().should('exist');
 
 export const checkSideNav = () => getSideNav().should('exist');
@@ -36,7 +40,9 @@ export const checkSideNavVisibility = (visible) => {
   getSideNav().should(condition);
 };
 
-export const checkMenuItems = (links) => getNavList().should('have.length', links.length);
+export const checkMenuItems = (links) => {
+  getNavList().should('have.length', links.length);
+};
 
 export const checkMenuLinks = (links) => {
   links.forEach((link) => {

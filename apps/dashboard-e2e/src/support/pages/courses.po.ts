@@ -23,9 +23,9 @@ export const getCourseTitle = (course) => cy.get(`[data-cy=course-${course.id}-i
 
 export const getCourseDeleteBtn = (course) => cy.get(`[data-cy=delete-course-${course.id}-btn]`);
 
-export const selectCourse = (course) => getCourseItem(course).click();
-
 export const getCourseDetailsTitle = () => cy.get('[data-cy=course-details-title]');
+
+export const selectCourse = (course) => getCourseItem(course).click();
 
 export const clearForm = () => cy.get('[data-cy=course-form-cancel]').click();
 
@@ -54,4 +54,17 @@ export const updateCourse = (model, course) => {
 export const deleteCourse = (model, course) => {
   cy.deleteEntity(model, course);
   getCourseDeleteBtn(course).click();
+};
+
+export const checkCourseDetailsTitle = (title) => {
+  getCourseDetailsTitle().should('contain.text', title);
+};
+
+export const checkCoursesLength = (courses) => {
+  getCourses().should('have.length', courses.length);
+};
+
+export const checkCourse = (course, exists = true) => {
+  const condition = exists ? 'exist' : 'not.exist';
+  getCourseItem(course).should(condition);
 };
