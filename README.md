@@ -165,9 +165,11 @@ That get translated into step definitions with all of the heavy lifting being de
 ```typescript
 Given(`I am on the home page`, () => cy.checkLocation(state.homeRoute));
 
-When('I have just created a new course', () => createCourse(model, state.newMockCourse));
+When('I have just created a new course', () => {
+  createCourse(model, state.newMockCourse);
+});
 
 Then('I should see that course in the courses list', () => {
-  getCourseItem(state.newMockCourse).should('exist');
+  checkCourse(state.newMockCourse);
 });
 ```
