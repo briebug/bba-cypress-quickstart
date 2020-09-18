@@ -1,10 +1,8 @@
-import {
-  gotoLoginScreen,
-  loginAs,
-  state,
-} from '../../support/pages/login.po';
+import { gotoLoginScreen, loginAs, state } from '../../support/pages/login.po';
 
-import { getLoginBtn, getSideNav} from '../../support/pages/app.po';
+import { getLoginBtn, getSideNav } from '../../support/pages/app.po';
+
+const { _ } = Cypress;
 
 describe('Login', () => {
   let users = null;
@@ -24,25 +22,25 @@ describe('Login', () => {
   });
 
   it('should allow login as an admin', () => {
-    const loggedInUser = users.find(user => user.role === 'admin');
+    const loggedInUser = _.find(users, { role: 'admin' });
     loginAs(loggedInUser);
     cy.checkLocation(state.homeRoute);
   });
 
   it('should allow login as a manager', () => {
-    const loggedInUser = users.find(user => user.role === 'manager');
+    const loggedInUser = _.find(users, { role: 'manager' });
     loginAs(loggedInUser);
     cy.checkLocation(state.homeRoute);
   });
 
   it('should allow login as an user', () => {
-    const loggedInUser = users.find(user => user.role === 'user');
+    const loggedInUser = _.find(users, { role: 'user' });
     loginAs(loggedInUser);
     cy.checkLocation(state.homeRoute);
   });
 
-  it('it should allow logout', () => {
-    const loggedInUser = users.find(user => user.role === 'user');
+  it('should allow logout', () => {
+    const loggedInUser = _.find(users, { role: 'user' });
     loginAs(loggedInUser);
     getLoginBtn().click();
 

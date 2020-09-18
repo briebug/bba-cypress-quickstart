@@ -14,5 +14,7 @@
   "chromeWebSecurity": false,
   "ignoreTestFiles": "**.steps.ts",
   "baseUrl": "http://localhost:4200/",
-  "apiUrl": "http://localhost:3333/api/"
+  "env": {
+    "apiUrl": "http://localhost:3333/api/"
+  }
 }

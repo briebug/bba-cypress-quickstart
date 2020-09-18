@@ -23,7 +23,7 @@ declare namespace Cypress {
   }
 }
 
-const API_URL = Cypress.config('apiUrl') ;
+const API_URL = Cypress.env('apiUrl') ;
 
 Cypress.Commands.add('login', (email, password) => {
   const jwt = require('jsonwebtoken');
@@ -46,7 +46,7 @@ Cypress.Commands.add('loadData', (models: string[]) => {
 });
 
 Cypress.Commands.add('checkLocation', (route) => {
-  cy.location().should((loc) => expect(loc.pathname).to.eq(route));
+  cy.location('pathname').should('equal', route);
 });
 
 Cypress.Commands.add('getEntities', (model) => {

@@ -43,18 +43,18 @@ Because Cypress ships with Nx, E2E tests can be run with the command below.
 npm run e2e
 ```
 
-Or even better, run this command.
+You can have Cypress watch and restart tests on test file changes with this command.
 
 ```
 nx run dashboard-e2e:e2e --watch
 ```
 
-## Project Notes
+## Testing Notes
 
 ### Mock Data
 We are mocking our back end using fixtures in the `apps/dashboard-e2e/src/fixtures` directory.
 
-We are then loading that data into our tests so we can write assertions against our UI like this.
+We can then load our fixture data once using the `before` hook and store that data so we can write assertions against our UI like this.
 
 ```typescript
 describe('Courses', () => {
@@ -75,6 +75,8 @@ describe('Courses', () => {
 
 ### Mock Server
 We are also mocking our RESTful API using those same fixtures in conjunction with `cy.server` and `cy.route`.
+
+> You can read more about mocking network requests in the Cypress documentation here https://on.cypress.io/network-requests
 
 We store this functionality in custom Cypress commands so that it is available for all tests.
 
@@ -148,9 +150,9 @@ export const checkLessonsReadOnly = (lessons) => {
 ```
 
 ### Cucumber
-We also have integrated Cucumber into our test suite and wrote a number of feature tests. The advantage of using Cucumber is that it allows us to express our test specifications in natural language that non-technical people can understand, validate, and contribute to. By having rich page objects and custom commands, there is very little work to express the functionality of a Cypress spec as a Cucumber feature.
+We also have integrated Cucumber into our test suite and wrote a number of feature tests. The advantage of using Cucumber is that it allows us to express our test specifications in natural language that non-technical people can understand, validate, and contribute to. **In short, it promotes readability.** High-fidelity communication is one of the most challenging aspects of client engagements and writing tests like the one below helps bring clarity and precision to what we are trying to accomplish.
 
-High-fidelity communication is one of the most challenging aspects of client engagements and writing tests like the one below helps bring clarity and precision to what we are trying to accomplish.
+By having rich page objects and custom commands, there is very little work to express the functionality of a Cypress spec as a Cucumber feature.
 
 ```
 Scenario: Create a course
@@ -172,3 +174,7 @@ Then('I should see that course in the courses list', () => {
   checkCourse(state.newMockCourse);
 });
 ```
+
+This is what the test looks like in action.
+
+![Cucumber Course Feature](apps/dashboard/src/assets/screenshots/course-feature.png)
