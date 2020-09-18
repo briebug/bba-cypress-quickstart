@@ -10,7 +10,7 @@ These folders hold end-to-end tests and supporting files for the Cypress Test Ru
 - [plugins](src/plugins) allow you to customize how tests are loaded, [read more](https://on.cypress.io/plugins)
 - [features](src/tests/features) hold the cucumber style feature test files [read more](https://www.npmjs.com/package/cypress-cucumber-preprocessor)
 - [integration](src/tests/integration) holds the actual test files, [read more](https://on.cypress.io/writing-and-organizing-tests)
-- [support](support) file runs before all tests and is a great place to write or load additional custom commands, page objects, utils, etc [read more](https://on.cypress.io/writing-and-organizing-tests#Support-file)
+- [support](src/support) file runs before all tests and is a great place to write or load additional custom commands, page objects, utils, etc [read more](https://on.cypress.io/writing-and-organizing-tests#Support-file)
 
 ## `cypress.json` file
 
