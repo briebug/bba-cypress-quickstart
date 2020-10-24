@@ -40,13 +40,12 @@ Cypress.Commands.add('logout', () => {
   localStorage.setItem('token', '');
 });
 
-Cypress.Commands.add('loadData', (models: string[]) => {
-  cy.server();
-  models.forEach(model =>  cy.getEntities(model));
-});
-
 Cypress.Commands.add('checkLocation', (route) => {
   cy.location('pathname').should('equal', route);
+});
+
+Cypress.Commands.add('loadData', (models: string[]) => {
+  models.forEach(model =>  cy.getEntities(model));
 });
 
 Cypress.Commands.add('getEntities', (model) => {
