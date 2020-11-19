@@ -44,14 +44,24 @@
     "material": {
       "tags": []
     },
+    "testing": {
+      "tags": []
+    },
+    "voice-recognition": {
+      "tags": []
+    },
     "ui-login": {
       "tags": []
     },
     "ui-toolbar": {
       "tags": []
     },
-    "testing": {
+    "steno": {
       "tags": []
+    },
+    "steno-e2e": {
+      "tags": [],
+      "implicitDependencies": ["steno"]
     }
   }
 }

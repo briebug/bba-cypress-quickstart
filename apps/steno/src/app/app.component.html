@@ -1,0 +1,32 @@
+<bba-toolbar
+  data-cy="toolbar"
+  [title]="title"
+  [isAuthenticated]="isAuthenticated$ | async"
+  [sidenavEnabled]="sidenavStatus !== 'disabled'"
+  (toggleSidenav)="toggleSidenav()">
+</bba-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav data-cy="side-nav" class="app-sidenav"
+    *ngIf="(isAuthenticated$ | async) as authenticated"
+    [opened]="sidenavStatus === 'opened'" mode="side">
+    <ng-container>
+      <span class="logo">
+        <img src="assets/images/logo.svg" alt="Logo">
+      </span>
+      <mat-divider></mat-divider>
+      <mat-nav-list data-cy="nav-list">
+        <mat-list-item *ngFor="let link of links"
+          [routerLink]="link.path" routerLinkActive="active"
+          attr.data-cy="nav-item-{{link.title}}">
+          <mat-icon matListIcon>{{link.icon}}</mat-icon>
+          {{link.title | uppercase}}
+        </mat-list-item>
+      </mat-nav-list>
+    </ng-container>
+  </mat-sidenav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

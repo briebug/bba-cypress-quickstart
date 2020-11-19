@@ -1,0 +1,19 @@
+<div class="home-container">
+  <mat-card class="voice-recognition-card">
+    <mat-card-header>
+      <mat-card-title>
+        Acceptance Criteria
+      </mat-card-title>
+      <mat-card-subtitle>Describe your acceptance criteria</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <pre>{{transcribe$ | async}}</pre>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-mini-fab aria-label="Recording button" (click)="record()">
+        <mat-icon>{{isRecording ? 'equalizer' : 'keyboard_voice'}}</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

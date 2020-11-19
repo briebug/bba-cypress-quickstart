@@ -30,6 +30,7 @@
     "serve:json": "json-server server/db.json",
     "serve:api": "nx run api:serve",
     "serve:web": "ng serve --open",
+    "serve:steno": "nx run steno:serve --open --port=4300",
     "serve:all": "concurrently \"npm run serve:api\" \"npm run serve:web\""
   },
   "private": true,
