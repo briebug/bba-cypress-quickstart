@@ -45,7 +45,7 @@ describe('Login', () => {
     getLoginBtn().click();
 
     cy.checkLocation(state.route);
-    getLoginBtn().should('not.be.visible');
-    getSideNav().should('not.be.visible');
+    getLoginBtn().should('not.exist');
+    getSideNav().should('not.exist');
   });
 });
